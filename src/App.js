@@ -1,21 +1,31 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import { connect } from "react-redux";
+import Login from "./components/Login";
+import { setCurrentUser } from "./actions/index";
+import "./App.css";
 
 class App extends Component {
+  componentWillMount() {
+    console.log("in CompWill");
+    const token = localStorage.getItem("token");
+    if (token) {
+      this.props.setCurrentUser();
+    }
+  }
+
   render() {
+    console.log(this.props);
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Login />
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return state;
+};
+
+export default connect(mapStateToProps, { setCurrentUser })(App);
