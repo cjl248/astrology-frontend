@@ -1,8 +1,9 @@
 import React from "react";
+import api from "../services/api";
 import { connect } from "react-redux";
 import { login } from "../actions/index";
 
-class Login extends React.Component {
+class Signup extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -46,7 +47,7 @@ class Login extends React.Component {
               <label>Username</label>
               <input
                 name="name"
-                placeholder="username"
+                placeholder="Choose a username"
                 value={fields.name}
                 onChange={this.handleChange}
               />
@@ -56,13 +57,22 @@ class Login extends React.Component {
               <input
                 name="password"
                 type="password"
-                placeholder="password"
+                placeholder="Choose a password"
                 value={fields.password}
                 onChange={this.handleChange}
               />
             </div>
+            <div className="ui field">
+              <label>When is your birthday?</label>
+              <input
+                name="birthday"
+                type="date"
+                value={fields.date}
+                onChange={this.handleChange}
+              />
+            </div>
             <button type="submit" className="ui basic green button">
-              Login
+              Sign Up
             </button>
           </form>
         </div>
@@ -71,4 +81,4 @@ class Login extends React.Component {
   }
 }
 
-export default connect(null, { login })(Login);
+export default connect(null, { login })(Signup);

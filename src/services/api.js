@@ -6,9 +6,9 @@ const headers = {
 };
 
 const getHoroscopes = () => {
-  return fetch(`${API_ROOT}/horoscopes/`, { headers: headers }).then(res =>
-    res.json()
-  );
+  return fetch(`${API_ROOT}/horoscopes/`, { headers: headers })
+    .then(res => res.json())
+    .then(res => console.log(res));
 };
 
 const login = (name, password) => {
@@ -25,12 +25,12 @@ const getCurrentUser = () => {
   }).then(res => res.json());
 };
 
-export default {
+let adapter = {
   auth: {
     login,
     getCurrentUser
   },
-  horoscopes: {
-    getHoroscopes
-  }
+  horoscopes: getHoroscopes
 };
+
+export default adapter;

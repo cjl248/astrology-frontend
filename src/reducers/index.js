@@ -1,8 +1,18 @@
+// import { combineReducers } from "redux";
+// import loginReducer from "./loginReducer";
+//
+// const rootReducer = combineReducers({
+//   currentUser: loginReducer
+// });
+//
+// export default rootReducer;
+
 import { combineReducers } from "redux";
-import loginReducer from "./loginReducer";
+import horoscopesReducer from "./horoscopesReducer";
 
 const rootReducer = combineReducers({
-  currentUser: loginReducer
+  horoscopes: horoscopesReducer
 });
 
 export default rootReducer;
+

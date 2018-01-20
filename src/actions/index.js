@@ -20,17 +20,30 @@ export function login(name, password) {
 }
 
 export function setCurrentUser() {
+  console.log("SET CURRENT USER");
   return dispatch => {
-    let headers = {
-      headers: { Authorization: localStorage.getItem("token") }
-    };
-    return fetch("http://localhost:3000/current_user", headers)
+    let headers = { Authorization: localStorage.getItem("token") };
+    console.log("token", localStorage.getItem("token"));
+
+    const token = localStorage.getItem("token");
+    return fetch("http://localhost:3000/current_user", {
+      headers: { Authorization: token }
+    })
       .then(res => res.json())
       .then(json => {
+        console.log("response", json);
         dispatch({ type: "LOGIN", user: json });
       });
   };
 }
+
+// export function fetchHoroscopes() {
+//   return function(dispatch) {
+//     adapter.horoscopes.getHoroscopes().then(data => {
+//       dispatch({ type: "GET_HOROSCOPES", horoscopes: data });
+//     });
+//   };
+// }
 // export const fetchUser = () => dispatch => {
 //   dispatch({ type: "ASYNC_START" });
 //   adapter.auth.getCurrentUser().then(user => {
